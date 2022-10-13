@@ -14,5 +14,5 @@ name = "locate_locale"
 path = "src/lib.rs"
 
 [target.'cfg(target_os = "windows")'.dependencies]
-kernel32-sys = "^0.2"
+kernel32-sys = "^0.3"
 
