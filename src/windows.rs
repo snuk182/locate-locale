@@ -1,14 +1,12 @@
-extern crate kernel32;
-
 fn locale_raw(out_buffer: &mut [u16], getter: unsafe extern "system" fn(*mut u16, i32) -> i32) -> usize {
     unsafe { getter(out_buffer as *mut _ as *mut u16, out_buffer.len() as i32) as usize }
 }
 
 fn system_locale_raw(out_buffer: &mut [u16]) -> usize {
-    locale_raw(out_buffer, kernel32::GetSystemDefaultLocaleName)
+    locale_raw(out_buffer, winapi::um::winnls::GetSystemDefaultLocaleName)
 }
 fn user_locale_raw(out_buffer: &mut [u16]) -> usize {
-    locale_raw(out_buffer, kernel32::GetUserDefaultLocaleName)
+    locale_raw(out_buffer, winapi::um::winnls::GetUserDefaultLocaleName)
 }
 
 pub fn system() -> String {
